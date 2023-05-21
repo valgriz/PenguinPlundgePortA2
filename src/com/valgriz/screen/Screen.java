@@ -4,9 +4,9 @@ import com.twopercent.main.DataManager;
 import com.twopercent.main.Global;
 import com.twopercent.render.UI;
 
+import com.util.TimelineBuilder;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
-import javafx.animation.TimelineBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;

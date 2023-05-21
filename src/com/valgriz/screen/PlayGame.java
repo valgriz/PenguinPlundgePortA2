@@ -6,11 +6,11 @@ import com.twopercent.render.BackgroundB;
 import com.twopercent.render.Bird;
 import com.twopercent.render.PlatformSys;
 import com.twopercent.render.UI;
+import com.util.TimelineBuilder;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.TimelineBuilder;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.Event;

@@ -43,3 +43,21 @@ dependencies {
     implementation('org.slf4j:slf4j-api:2.0.4')
     implementation('ch.qos.logback:logback-classic:1.4.7')
 }
+
+def extraExports = [
+        'javafx.base/com.sun.javafx.collections',
+        'javafx.graphics/com.sun.glass.events',
+]
+def exportTo = application.mainModule.get()
+
+tasks.withType(JavaCompile).configureEach {
+    extraExports.each { export ->
+        options.compilerArgs += ['--add-exports', "$export=$exportTo"]
+    }
+}
+
+tasks.withType(JavaExec).configureEach {
+    extraExports.each { export ->
+        jvmArgs(['--add-exports', "$export=$exportTo"])
+    }
+}

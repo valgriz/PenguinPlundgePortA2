@@ -2,8 +2,6 @@ package com.twopercent.render;
 
 import java.awt.Color;
 
-import com.sun.javafx.css.FontFace;
-import com.sun.javafx.scene.control.behavior.TextBinding;
 import com.twopercent.main.DataManager;
 import com.twopercent.main.Global;
 import com.twopercent.main.Stat;
