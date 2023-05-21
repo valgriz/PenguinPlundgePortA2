@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+java {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+}
+
+application {
+    mainModule.set 'PenguinPlundgePortA2.main'
+    mainClass.set 'com.twopercent.main.Main'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/'
+        }
+        resources.srcDir 'res/'
+    }
+}
+
+def fxVersion = '20.0.1'
+// def fxVersion = '11.0.2'
+
+dependencies {
+    implementation("org.openjfx:javafx-base:$fxVersion:linux")
+    implementation("org.openjfx:javafx-controls:$fxVersion:linux")
+    implementation("org.openjfx:javafx-fxml:$fxVersion:linux")
+    implementation("org.openjfx:javafx-swing:$fxVersion:linux")
+    implementation("org.openjfx:javafx-media:$fxVersion:linux")
+    implementation("org.openjfx:javafx-graphics:$fxVersion:linux")
+
+    implementation('io.projectreactor:reactor-core:3.5.5')
+    annotationProcessor('org.projectlombok:lombok:1.18.26')
+    implementation('org.projectlombok:lombok:1.18.26')
+    implementation('org.slf4j:slf4j-api:2.0.4')
+    implementation('ch.qos.logback:logback-classic:1.4.7')
+}
