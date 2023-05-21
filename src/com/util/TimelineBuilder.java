@@ -34,15 +34,15 @@ public class TimelineBuilder {
 
     private void each(Long l) {
         if (keyFrame.getOnFinished() == null) return;
-        try {
-            // https://stackoverflow.com/a/32489845
-            Platform.runLater(this::runOnFinished);
-        } catch (Exception e) {
-            log.debug(e.getMessage(),   e);
-        }
+        // https://stackoverflow.com/a/32489845
+        Platform.runLater(this::runOnFinished);
     }
 
     private void runOnFinished() {
-        keyFrame.getOnFinished().handle(null);
+        try {
+            keyFrame.getOnFinished().handle(null);
+        } catch (Exception e) {
+            log.debug(e.getMessage(), e);
+        }
     }
 }
