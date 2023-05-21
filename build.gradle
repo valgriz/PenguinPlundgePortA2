@@ -1,12 +1,28 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.beryx.jlink' version '2.26.0'
 }
 
 java {
     sourceCompatibility JavaVersion.VERSION_17
     targetCompatibility JavaVersion.VERSION_17
 }
+
+def jlinkName = 'ppp'
+jlink {
+    options.set(['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages'])
+    launcher { name = jlinkName }
+    imageName.set jlinkName
+    imageZip.set(new File(project.buildDir, jlinkName + '.zip'))
+    // reactor needs some help to work with modules (javafx)
+    mergedModule {
+        excludeProvides servicePattern: 'io.micrometer.context.ContextAccessor'
+        excludeProvides servicePattern: 'reactor.blockhound.integration.BlockHoundIntegration'
+    }
+}
+
+tasks.register('buildRelease') { dependsOn('jlinkZip') }
 
 application {
     mainModule.set 'PenguinPlundgePortA2.main'

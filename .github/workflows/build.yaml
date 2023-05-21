@@ -30,9 +30,16 @@ jobs:
       with:
         arguments: build
 
+    - name: Build Release with Gradle
+      if: ${{ contains(github.event.head_commit.message, 'release') }}
+      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+      with:
+        arguments: buildRelease
+
     - name: Archive build result
+      if: ${{ contains(github.event.head_commit.message, 'release') }}
       uses: actions/upload-artifact@v3
       with:
-        name: ppp-${{ matrix.os }}.jar
-        path: build/libs/PenguinPlundgePortA2.jar
-        retention-days: 30
+        name: ppp-${{ matrix.os }}.zip
+        path: build/ppp.zip
+        retention-days: 90
