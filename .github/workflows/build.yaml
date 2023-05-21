@@ -36,10 +36,13 @@ jobs:
       with:
         arguments: buildRelease
 
-    - name: Archive build result
+    - name: Upload binaries to release
       if: ${{ contains(github.event.head_commit.message, 'release') }}
-      uses: actions/upload-artifact@v3
+      uses: svenstaro/upload-release-action@v2
       with:
-        name: ppp-${{ matrix.os }}.zip
-        path: build/ppp.zip
-        retention-days: 90
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: build/ppp.zip
+        asset_name: ppp-${{ matrix.os }}.zip
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "This is my release text"
